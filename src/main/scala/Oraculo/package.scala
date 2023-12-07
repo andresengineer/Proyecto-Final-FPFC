@@ -2,9 +2,10 @@
 Proyecto Final:
 
 Wilson Andrés Mosquera Zapata <202182116>
- <2021>
+Andrés Camilo Henao Hidalgo <202227887>
+Juan José Bolaños Delgado <201942124>
 
-28/11/2023
+07/12/2023
 
 Archivo: package.scala (Oraculo)
 

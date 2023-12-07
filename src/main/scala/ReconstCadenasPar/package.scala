@@ -2,9 +2,10 @@
 Proyecto Final:
 
 Wilson Andrés Mosquera Zapata <202182116>
- <202124366>
+Andrés Camilo Henao Hidalgo <202227887>
+Juan José Bolaños Delgado <201942124>
 
-28/11/2023
+07/12/2023
 
 Archivo: package.scala (ReconstCadenasPar)
 
@@ -53,6 +54,7 @@ package object ReconstCadenasPar {
     }
   }
 
+
   // Función de reconstrucción de cadena mejorada paralela
   def reconstruirCadenaMejoradoPar(umbral: Int)(n: Int, o: Oraculo): Seq[Char] = {
 
@@ -90,6 +92,7 @@ package object ReconstCadenasPar {
     }
   }
 
+
   // Función de reconstrucción de cadena turbo paralela
   def reconstruirCadenaTurboPar(umbral: Int)(n: Int, o: Oraculo) : Seq [Char]= {
 
@@ -110,6 +113,42 @@ package object ReconstCadenasPar {
       }
 
       // Inicializar el conjunto de subcadenas generadas de longitud 1 como ParSet
+      val subcadenasIniciales: ParSet[Seq[Char]] = alfabeto.map(Seq(_)).toSet.par
+
+      generarCadenaTurbo(2, subcadenasIniciales)
+    }
+  }
+
+
+  // Función de reconstrucción de cadena turbo mejorada paralela
+  def reconstruirCadenaTurboMejoradaPar(umbral: Int)(n: Int, o: Oraculo): Seq[Char] = {
+    if (n <= umbral) {
+      // Si el tamaño del conjunto de secuencias es menor o igual al umbral, ejecutar de forma secuencial
+      reconstruirCadenaTurboMejorada(n, o)
+    } else {
+      def generarCadenaTurbo(currentLength: Int, subcadenasActuales: ParSet[Seq[Char]]): Seq[Char] = {
+        def verificarConcatenacion(subcadena1: Seq[Char], subcadena2: Seq[Char]): Boolean = {
+          val concatenacion = subcadena1 ++ subcadena2
+          subcadenasActuales.exists { w =>
+            w.sliding(currentLength, 1).forall(sub => concatenacion.containsSlice(sub))
+          }
+        }
+
+        def filtrarSubcadenas(subcadenasActuales: ParSet[Seq[Char]], currentLength: Int): ParSet[Seq[Char]] = {
+          subcadenasActuales.filter { subcadena1 =>
+            subcadenasActuales.forall(subcadena2 => verificarConcatenacion(subcadena1, subcadena2))
+          }
+        }
+
+        val nuevasSubcadenas = subcadenasActuales.flatMap(seq1 => subcadenasActuales.map(seq2 => seq1 ++ seq2))
+        val subcadenasFiltradas = nuevasSubcadenas.filter(o)
+
+        val resultado = subcadenasFiltradas.to(LazyList).find(_.length == n)
+        if (resultado.isDefined) resultado.get
+        else if (currentLength > n) Seq.empty[Char]
+        else generarCadenaTurbo(currentLength * 2, filtrarSubcadenas(subcadenasFiltradas, currentLength))
+      }
+
       val subcadenasIniciales: ParSet[Seq[Char]] = alfabeto.map(Seq(_)).toSet.par
 
       generarCadenaTurbo(2, subcadenasIniciales)

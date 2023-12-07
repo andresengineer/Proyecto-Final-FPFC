@@ -3,19 +3,12 @@ import Oraculo._
 import ReconstCadenas._
 import ReconstCadenasPar._
 import Benchmark._
-
 import scala.util.Random
 
 val random = new Random()
+
 val alfabeto = Seq('a', 'c', 'g', 't')
 val costoOraculo = 1
-
-
-
-// Pruebas de Funcionamiento:
-
-
-
 
 
 
@@ -128,7 +121,8 @@ val s1_4 = secAlAzar(4,Seq())
 
 
 val lengt = s1_8.length
-// Pruebas de Funcionamiento:
+
+
 
 //reconstruirCadenaIngenuo(s1_8.length, crearOraculo(costoOraculo)(s1_8))
 //reconstruirCadenaIngenuoPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
@@ -145,21 +139,28 @@ val lengt = s1_8.length
 //compararAlgoritmos(reconstruirCadenaMejorado,reconstruirCadenaMejoradoPar(2))(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 
 
-reconstruirCadenaTurbo(s1_8.length, crearOraculo(costoOraculo)(s1_8))
-reconstruirCadenaTurboPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
-compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//reconstruirCadenaTurbo(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//reconstruirCadenaTurboPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//
+//reconstruirCadenaTurbo(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+//reconstruirCadenaTurboPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+//compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 
-reconstruirCadenaTurbo(s1_16.length, crearOraculo(costoOraculo)(s1_16))
-reconstruirCadenaTurboPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
-compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+
+
+reconstruirCadenaTurboMejorada(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+reconstruirCadenaTurboMejoradaPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_16))
+
+reconstruirCadenaTurboMejorada(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+reconstruirCadenaTurboMejoradaPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
 
 
 
-//reconstruirCadenaTurboMejorada(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+
 //reconstruirCadenaTurboAcelerada(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 //
 
-//reconstruirCadenaTurboMejoradaPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 //reconstruirCadenaTurboAceleradaPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 
 
@@ -334,68 +335,6 @@ pruebasTurboAcelerada(ss2_1024)
 pruebasTurboAcelerada(ss2_2048)
 pruebasTurboAcelerada(ss2_4096)*/*/
 
-//// Pruebas de pertenece():
-//val t = Nodo(' ', false, List(
-//  Nodo('a', false, List(
-//    Nodo('c', true, List(
-//      Nodo('a', false, List(
-//        Hoja('c', true)
-//      )),
-//      Hoja('t', true)
-//    ))
-//  )),
-//  Nodo('c', true, List(
-//    Nodo('a', false, List(
-//      Nodo('c', true, List(
-//        Hoja('t', true)
-//      ))
-//    )),
-//    Hoja('t',true)
-//  )),
-//  Hoja('t', true)
-//))
-//
-//val secuencia1 = Seq('a','c')
-//pertenece(secuencia1,t)
-//val secuencia2 = Seq('a','c','t')
-//pertenece(secuencia2,t)
-//val secuencia3 = Seq('c','a','c','t')
-//pertenece(secuencia3,t)
-//val secuencia4 = Seq('t')
-//pertenece(secuencia4,t)
-//val secuencia5 = Seq('a','c','a','c')
-//pertenece(secuencia5,t)
-//val secuencia6 = Seq('c','a')
-//pertenece(secuencia6,t)
-//val secuencia7 = Seq('a','c','a')
-//pertenece(secuencia7,t)
-//val secuencia8 = Seq('g','t')
-//pertenece(secuencia8,t)
-//val secuencia9 = Seq('g') // 'g' no está en el árbol de sufijos t.
-//pertenece(secuencia9,t)
-//val secuencia10 = Seq(' ') // ' ' no está en el diccionario.
-//pertenece(secuencia10,t)
-//
-//val secuencia11 = Seq('a','c','a','c','t')
-//val secuencia12 = Seq('g','t')
-//val secuencia13 = Seq('g','t','a')
-//val t2 = adicionar(secuencia9,t)
-//val t3 = adicionar(secuencia11,t)
-//val t4 = adicionar(secuencia12,t2)
-//val t5 = adicionar(secuencia13,t4)
-//val t6 = adicionar(secuencia13,t)
-//val t7 = adicionar(secuencia6,t)
-//print(t)
-//print(t2)
-//print(t3)
-//print(t4)
-//print(t5)
-//print(t6)
-//pertenece(secuencia9,t3)
-//pertenece(secuencia8,t5)
-//pertenece(secuencia13,t5)
-//pertenece(secuencia13,t6)
-//pertenece(secuencia6,t7)
 
 
 

@@ -2,9 +2,10 @@
 Proyecto Final:
 
 Wilson Andrés Mosquera Zapata <202182116>
- <2021>
+Andrés Camilo Henao Hidalgo <202227887>
+Juan José Bolaños Delgado <201942124>
 
-28/11/2023
+07/12/2023
 
 Archivo: package.scala (ReconstCadenas)
 
@@ -17,6 +18,7 @@ package object ReconstCadenas {
 
   val alfabeto = Seq('a', 'c', 'g', 't')
   type Oraculo = Seq[Char] => Boolean
+
 
 //3.1. Implementando la solución ingenua.
   def reconstruirCadenaIngenuo(n: Int, o: Oraculo): Seq[Char] = {
@@ -34,6 +36,7 @@ package object ReconstCadenas {
     // Devolver la subsecuencia encontrada o una secuencia vacía si no se encuentra ninguna
     resultado.getOrElse(Seq.empty[Char])
   }
+
 
 // 3.2. Implementando la solución mejorada.
   def reconstruirCadenaMejorado(n: Int, o: Oraculo): Seq[Char] = {
@@ -64,6 +67,7 @@ package object ReconstCadenas {
       // Devolver una cadena vacía si no se encuentra ninguna solución
       Seq.empty[Char]
     }
+
 
 // 3.3. Implementando la solución turbo.
   def reconstruirCadenaTurbo(n: Int, o: Oraculo): Seq[Char] = {

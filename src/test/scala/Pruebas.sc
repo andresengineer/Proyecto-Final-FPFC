@@ -1,3 +1,16 @@
+/*
+Proyecto Final:
+
+Wilson Andrés Mosquera Zapata <202182116>
+Andrés Camilo Henao Hidalgo <202227887>
+Juan José Bolaños Delgado <201942124>
+
+07/12/2023
+
+Archivo: Pruebas.sc
+
+*/
+
 import ArbolSufijos._
 import Oraculo._
 import ReconstCadenas._
@@ -139,21 +152,29 @@ val lengt = s1_8.length
 //compararAlgoritmos(reconstruirCadenaMejorado,reconstruirCadenaMejoradoPar(2))(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 
 
-reconstruirCadenaTurbo(s1_8.length, crearOraculo(costoOraculo)(s1_8))
-reconstruirCadenaTurboPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
-compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//reconstruirCadenaTurbo(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//reconstruirCadenaTurboPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+//
+//reconstruirCadenaTurbo(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+//reconstruirCadenaTurboPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+//compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 
-reconstruirCadenaTurbo(s1_16.length, crearOraculo(costoOraculo)(s1_16))
-reconstruirCadenaTurboPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
-compararAlgoritmos(reconstruirCadenaTurbo, reconstruirCadenaTurboPar(2))(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+
+
+reconstruirCadenaTurboMejorada(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+reconstruirCadenaTurboMejoradaPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+
+reconstruirCadenaTurboMejorada(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+reconstruirCadenaTurboMejoradaPar(2)(s1_8.length, crearOraculo(costoOraculo)(s1_8))
+compararAlgoritmos(reconstruirCadenaMejorado,reconstruirCadenaMejoradoPar(2))(s1_8.length, crearOraculo(costoOraculo)(s1_8))
 
 
 
-//reconstruirCadenaTurboMejorada(s1_16.length, crearOraculo(costoOraculo)(s1_16))
+
 //reconstruirCadenaTurboAcelerada(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 //
 
-//reconstruirCadenaTurboMejoradaPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 //reconstruirCadenaTurboAceleradaPar(2)(s1_16.length, crearOraculo(costoOraculo)(s1_16))
 
 
