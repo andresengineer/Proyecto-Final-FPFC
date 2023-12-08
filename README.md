@@ -27,35 +27,6 @@ Implementa una solución turbo mejorada para reconstruir una cadena de longitud 
 
 Estas funciones ofrecen diferentes estrategias para la reconstrucción de cadenas, adaptándose a diversos contextos y mejorando el rendimiento en comparación con enfoques más simples.
 
-
-
-## ArbolSufijos
-
-Este directorio contiene el archivo `package.scala`, el cual implementa diferentees funciones para la reconstrucción de cadenas utilizando 
-
-## Contenido del Archivo
-
-El archivo incluye las siguientes funciones:
-
-1. **`reconstruirCadenaIngenuo(n: Int, o: Oraculo): Seq[Char]`**
-   - Implementa una solución ingenua para reconstruir una cadena de longitud `n` utilizando un oráculo.
-
-2. **`reconstruirCadenaMejorado(n: Int, o: Oraculo): Seq[Char]`**
-   - Implementa una solución mejorada para reconstruir una cadena de longitud `n` utilizando un oráculo.
-
-3. **`reconstruirCadenaTurbo(n: Int, o: Oraculo): Seq[Char]`**
-   - Implementa una solución turbo para reconstruir una cadena de longitud `n` utilizando un oráculo.
-
-4. **`reconstruirCadenaTurboMejorada(n: Int, o: Oraculo): Seq[Char]`**
-   - Implementa una solución turbo mejorada para reconstruir una cadena de longitud `n` utilizando un oráculo.
-
-## Uso del Archivo
-
-Estas funciones ofrecen diferentes enfoques para la reconstrucción de cadenas, permitiendo adaptarse a diversas restricciones y mejorar el rendimiento en comparación con enfoques más simples.
-
-## Integrantes del Proyecto
-
-
 ## ArbolSufijos Package
 
 Este archivo, ubicado en `/src/main/scala/ArbolSufijos/` y llamado `package.scala`, forma parte de la implementación para la función de la solución turbo acelerada. Se centra en la implementación de un árbol de sufijos en Scala.
