@@ -401,12 +401,12 @@ pertenece(seq13,arbol6)
 
 //Comparacion distintas funciones:
 
-
+/*
 // Pruebas Mejorado
 def pruebasMejorado(cantPruebas:Int,n:Int,umbral:Int) = for {
   i <- 1 to cantPruebas
   s = secAlAzar(math.pow(2,n).toInt,Seq())
-} yield compararAlgoritmos(reconstruirCadenaTurbo,reconstruirCadenaTurboPar(umbral))(s.length,crearOraculo(1)(s))
+} yield compararAlgoritmos(reconstruirCadenaMejorado,reconstruirCadenaMejoradoPar(umbral))(s.length,crearOraculo(1)(s))
 
 
 // Longitud 2
@@ -433,8 +433,6 @@ pruebasMejorado(1,7,2)
 
 
 
-
-/*
 //Pruebas turbo
 def pruebasTurbo(cantPruebas:Int,n:Int,umbral:Int) = for {
   i <- 1 to cantPruebas
@@ -443,26 +441,222 @@ def pruebasTurbo(cantPruebas:Int,n:Int,umbral:Int) = for {
 
 
 // Longitud 2
-pruebasTurbo(1,3,1)
+pruebasTurbo(1,1,1)
 
 // Longitud 4
-pruebasTurbo(1,3,1)
+pruebasTurbo(1,2,1)
 
 // Longitud 8
 pruebasTurbo(1,3,2)
 
 // Longitud 16
-pruebasTurbo(1,3,4)
+pruebasTurbo(1,4,4)
 
 // Longitud 32
-pruebasTurbo(1,3,4)
+pruebasTurbo(1,5,4)
 
 // Longitud 64
-pruebasTurbo(1,3,4)
+pruebasTurbo(1,6,4)
 
 // Longitud 128
-pruebasTurbo(1,3,4)
+pruebasTurbo(1,7,4)
 
 // Longitud 256
-pruebasTurbo(1,1,4)*/
+pruebasTurbo(1,8,4)
+*/
 
+
+
+//Pruebas turbo Mejorada
+def pruebasTurboMejorada(cantPruebas:Int,n:Int,umbral:Int) = for {
+  i <- 1 to cantPruebas
+  s = secAlAzar(math.pow(2,n).toInt,Seq())
+} yield compararAlgoritmos(reconstruirCadenaTurboMejorada,reconstruirCadenaTurboMejoradaPar(umbral))(s.length,crearOraculo(1)(s))
+
+
+// Longitud 2
+pruebasTurboMejorada(1,1,2)
+
+// Longitud 4
+pruebasTurboMejorada(1,2,2)
+
+// Longitud 8
+pruebasTurboMejorada(1,3,2)
+
+// Longitud 16
+pruebasTurboMejorada(1,4,2)
+
+// Longitud 32
+pruebasTurboMejorada(1,5,2)
+
+// Longitud 64
+pruebasTurboMejorada(1,6,2)
+
+// Longitud 128
+pruebasTurboMejorada(1,7,2)
+
+// Longitud 256
+pruebasTurboMejorada(1,8,2)
+
+
+//Pruebas turbo acelerada
+def pruebasTurboAcelerada(cantPruebas:Int,n:Int,umbral:Int) = for {
+  i <- 1 to cantPruebas
+  s = secAlAzar(math.pow(2,n).toInt,Seq())
+} yield compararAlgoritmos(reconstruirCadenaTurboAcelerada,reconstruirCadenaTurboAcelerada(umbral))(s.length,crearOraculo(1)(s))
+
+
+// Longitud 2
+pruebasTurboAcelerada(1,1,2)
+
+// Longitud 4
+pruebasTurboAcelerada(1,2,2)
+
+// Longitud 8
+pruebasTurboAcelerada(1,3,2)
+
+// Longitud 16
+pruebasTurboAcelerada(1,4,2)
+
+// Longitud 32
+pruebasTurboAcelerada(1,5,2)
+
+// Longitud 64
+pruebasTurboAcelerada(1,6,2)
+
+// Longitud 128
+pruebasTurboAcelerada(1,7,2)
+
+// Longitud 256
+pruebasTurboAcelerada(1,8,2)
+
+
+////////Pruebas paralelizacion
+
+
+//Pruebas Acelerada vs Turbo Mejorada (par)
+def pruebasTurboAcvsTMej(cantPruebas:Int,n:Int,umbral:Int) = for {
+  i <- 1 to cantPruebas
+  s = secAlAzar(math.pow(2,n).toInt,Seq())
+} yield compararAlgoritmos(reconstruirCadenaTurboAceleradaPar(umbral),reconstruirCadenaTurboMejoradaPar(umbral))(s.length,crearOraculo(1)(s))
+
+
+// Longitud 2
+pruebasTurboAcvsTMej(1,1,2)
+
+// Longitud 4
+pruebasTurboAcvsTMej(1,2,2)
+
+// Longitud 8
+pruebasTurboAcvsTMej(1,3,2)
+
+// Longitud 16
+pruebasTurboAcvsTMej(1,4,2)
+
+// Longitud 32
+pruebasTurboAcvsTMej(1,5,2)
+
+// Longitud 64
+pruebasTurboAcvsTMej(1,6,2)
+
+// Longitud 128
+pruebasTurboAcvsTMej(1,7,2)
+
+// Longitud 256
+pruebasTurboAcvsTMej(1,8,2)
+
+
+//Pruebas Acelerada vs Turbo (par)
+def pruebasTurboAcvsTurb(cantPruebas:Int,n:Int,umbral:Int) = for {
+  i <- 1 to cantPruebas
+  s = secAlAzar(math.pow(2,n).toInt,Seq())
+} yield compararAlgoritmos(reconstruirCadenaTurboAceleradaPar(umbral),reconstruirCadenaTurboPar(umbral))(s.length,crearOraculo(1)(s))
+
+
+// Longitud 2
+pruebasTurboAcvsTurb(1,1,2)
+
+// Longitud 4
+pruebasTurboAcvsTurb(1,2,2)
+
+// Longitud 8
+pruebasTurboAcvsTurb(1,3,2)
+
+// Longitud 16
+pruebasTurboAcvsTurb(1,4,2)
+
+// Longitud 32
+pruebasTurboAcvsTurb(1,5,2)
+
+// Longitud 64
+pruebasTurboAcvsTurb(1,6,2)
+
+// Longitud 128
+pruebasTurboAcvsTurb(1,7,2)
+
+// Longitud 256
+pruebasTurboAcvsTurb(1,8,2)
+
+
+//Pruebas Turbo vs Turbo Mejorada (par)
+def pruebasTurboTurvsTMej(cantPruebas:Int,n:Int,umbral:Int) = for {
+  i <- 1 to cantPruebas
+  s = secAlAzar(math.pow(2,n).toInt,Seq())
+} yield compararAlgoritmos(reconstruirCadenaTurboPar(umbral),reconstruirCadenaTurboMejoradaPar(umbral))(s.length,crearOraculo(1)(s))
+
+
+// Longitud 2
+pruebasTurboTurvsTMej(1,1,2)
+
+// Longitud 4
+pruebasTurboTurvsTMej(1,2,2)
+
+// Longitud 8
+pruebasTurboTurvsTMej(1,3,2)
+
+// Longitud 16
+pruebasTurboTurvsTMej(1,4,2)
+
+// Longitud 32
+pruebasTurboTurvsTMej(1,5,2)
+
+// Longitud 64
+pruebasTurboTurvsTMej(1,6,2)
+
+// Longitud 128
+pruebasTurboTurvsTMej(1,7,2)
+
+// Longitud 256
+pruebasTurboTurvsTMej(1,8,2)
+
+
+//Pruebas Mejorada vs Turbo Mejorada (par)
+def pruebasTurboMejvsTMej(cantPruebas:Int,n:Int,umbral:Int) = for {
+  i <- 1 to cantPruebas
+  s = secAlAzar(math.pow(2,n).toInt,Seq())
+} yield compararAlgoritmos(reconstruirCadenaMejoradoPar(umbral),reconstruirCadenaTurboMejoradaPar(umbral))(s.length,crearOraculo(1)(s))
+
+
+// Longitud 2
+pruebasTurboMejvsTMej(1,1,2)
+
+// Longitud 4
+pruebasTurboMejvsTMej(1,2,2)
+
+// Longitud 8
+pruebasTurboMejvsTMej(1,3,2)
+
+// Longitud 16
+pruebasTurboMejvsTMej(1,4,2)
+
+// Longitud 32
+pruebasTurboMejvsTMej(1,5,2)
+
+// Longitud 64
+pruebasTurboMejvsTMej(1,6,2)
+
+// Longitud 128
+pruebasTurboMejvsTMej(1,7,2)
+
+// Longitud 256
+pruebasTurboMejvsTMej(1,8,2)
