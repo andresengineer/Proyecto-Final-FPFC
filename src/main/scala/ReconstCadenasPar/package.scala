@@ -19,6 +19,7 @@ import ReconstCadenas._
 import scala.util.DynamicVariable
 import scala.collection.parallel.immutable.ParSet
 import scala.collection.parallel.immutable.ParVector
+import ArbolSufijos._
 
 package object ReconstCadenasPar {
 
@@ -153,6 +154,37 @@ package object ReconstCadenasPar {
 
       generarCadenaTurbo(2, subcadenasIniciales)
     }
+  }
+
+
+  // Función de reconstrucción de cadena acelerada paralela
+  def reconstruirCadenaTurboAceleradaPar(umbral : Int)(n: Int, o: Oraculo): Seq [Char]= {
+    def generarCadena(k: Int, secuencias: ParVector[Seq[Char]]): Seq[Char] = {
+      if (secuencias.size <= umbral) {
+        // Si el tamaño del conjunto de secuencias es menor o igual al umbral, ejecutar de forma secuencial
+        reconstruirCadenaTurboAcelerada(n, o)
+      } else {
+        val conjuntoFiltrado = filtrarSecuencias(secuencias, k)
+        val nuevoConjunto = conjuntoFiltrado.par.filter(o)
+
+        nuevoConjunto.find(_.length == n) match {
+          case Some(resultado) => resultado
+          case None if k > n => Seq.empty[Char]
+          case None => generarCadena(k * 2, nuevoConjunto)
+        }
+      }
+    }
+
+    def filtrarSecuencias(secuencias: ParVector[Seq[Char]], longitud: Int): ParVector[Seq[Char]] = {
+      val arbolSecuencias = arbolDeSufijos(secuencias.seq)
+
+      secuencias.flatMap(seq => secuencias.map(_ ++ seq)).par.filter { s =>
+        s.sliding(longitud).forall(subSeq => pertenece(subSeq, arbolSecuencias))
+      }
+    }
+
+    val conjuntoInicial: ParVector[Seq[Char]] = alfabeto.map(Seq(_)).to(ParVector)
+    generarCadena(1, conjuntoInicial)
   }
 
 

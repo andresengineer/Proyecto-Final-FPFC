@@ -12,6 +12,7 @@ Archivo: package.scala (ReconstCadenas)
 */
 
 import Oraculo._
+import ArbolSufijos._
 
 package object ReconstCadenas {
 
@@ -137,6 +138,37 @@ package object ReconstCadenas {
 
     // Llamada inicial a la función de generación.
     generarCadenaTurbo(2, subcadenasIniciales)
+  }
+
+
+  // 3.5. Implementando la solución turbo acelerada.
+  def reconstruirCadenaTurboAcelerada(n: Int, o: Oraculo): Seq[Char] = {
+    // recibe la longitud de la secuencia que hay que reconstruir (n , potencia de 2), y un oraculo para esa secuencia
+    // y devuelve la secuencia reconstruida
+    // Usa la propiedad de que si s=s1++s2 entonces s1 y s2 tambien son subsecuencias de s
+    // Usa arboles de sufijos para guardar Seq[Seq[Char]]
+
+    def generarCadena(k: Int, secuencias: Seq[Seq[Char]]): Seq[Char] = {
+      val conjuntoFiltrado = filtrarSecuencias(secuencias, k)
+      val nuevoConjunto = conjuntoFiltrado.filter(o)
+
+      nuevoConjunto.find(_.length == n) match {
+        case Some(resultado) => resultado
+        case None if k > n => Seq.empty[Char]
+        case None => generarCadena(k * 2, nuevoConjunto)
+      }
+    }
+
+    def filtrarSecuencias(secuencias: Seq[Seq[Char]], longitud: Int): Seq[Seq[Char]] = {
+      val arbolSecuencias = arbolDeSufijos(secuencias)
+
+      secuencias.flatMap(seq => secuencias.map(_ ++ seq)).filter { s =>
+        s.sliding(longitud).forall(subSeq => pertenece(subSeq, arbolSecuencias))
+      }
+    }
+
+    val conjuntoInicial: Seq[Seq[Char]] = alfabeto.map(Seq(_))
+    generarCadena(1, conjuntoInicial)
   }
 
 
